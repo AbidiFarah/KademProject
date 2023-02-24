@@ -1,24 +1,23 @@
-package tn.agena3000.sfbuild.kademproject.models;
+package tn.agena3000.sfbuild.kademproject.Entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Universite {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     int idUniv;
     String nomUniv;
-    @OneToMany(
-            cascade = {CascadeType.ALL}
-    )
-    @JoinColumn(
-            name = "fk_Universite_id"
-    )
+    @OneToMany
     private List<Departement> Departements;
 
 }

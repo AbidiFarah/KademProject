@@ -1,9 +1,8 @@
-package tn.agena3000.sfbuild.kademproject.models;
+package tn.agena3000.sfbuild.kademproject.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
@@ -23,4 +22,6 @@ public class Contrat {
     private Specialite specialite;
     private boolean archive;
     private Integer montantContrat;
+    @ManyToOne
+    private Etudiant etudiant;
 }

@@ -1,4 +1,4 @@
-package tn.agena3000.sfbuild.kademproject.models;
+package tn.agena3000.sfbuild.kademproject.Entity;
 
 public enum Specialite {
     IA,
