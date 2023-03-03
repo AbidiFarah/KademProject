@@ -3,6 +3,7 @@ package tn.agena3000.sfbuild.kademproject.Services.Etudiant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import tn.agena3000.sfbuild.kademproject.Entity.Contrat;
 import tn.agena3000.sfbuild.kademproject.Entity.Departement;
 import tn.agena3000.sfbuild.kademproject.Entity.Equipe;
@@ -12,6 +13,7 @@ import tn.agena3000.sfbuild.kademproject.Repository.DepartementRepository;
 import tn.agena3000.sfbuild.kademproject.Repository.EquipeRepository;
 import tn.agena3000.sfbuild.kademproject.Repository.EtudiantRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -69,24 +71,23 @@ public class EtudiantService implements IEtudiantService{
     public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe) {
         Contrat contrat = contratRepository.findById(idContrat).orElse(null);
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
-
-        if(e == null && contrat == null && equipe == null )  {
-            return null;
-        }
+        Assert.isNull(contrat,"The contart is null ");
+        Assert.isNull(equipe,"The equipe is null ");
+        Assert.isNull(e,"The etudiant  is null ");
+        // ki yebda aandek object jdid donc lezem taamlou t'initalisi el equipa
+        List<Equipe> equipes = new ArrayList<>();
+        equipes.add(equipe);
+        e.setEquipes(equipes);
+        etudiantRepository.saveAndFlush(e);
         contrat.setEtudiant(e);
         e.getContrats().add(contrat);
-        e.getEquipes().add(equipe);
-        etudiantRepository.save(e);
-        return e;
-
+        return etudiantRepository.save(e);
     }
 
     @Override
     public List<Etudiant> getEtudiantsByDepartement(Integer idDepartement) {
         Departement departement = departementRepository.findById(idDepartement).orElse(null);
-        if(departement == null ){
-            return null ;
-        }
+        Assert.isNull(departement ,"The departement is null ");
         return departement.getEtudiants();
     }
 }

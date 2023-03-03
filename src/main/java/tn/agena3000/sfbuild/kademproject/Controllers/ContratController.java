@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tn.agena3000.sfbuild.kademproject.Entity.Contrat;
+import tn.agena3000.sfbuild.kademproject.Entity.Specialite;
 import tn.agena3000.sfbuild.kademproject.Services.Contrat.IContratService;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -34,7 +37,20 @@ public class ContratController {
     }
     @PutMapping()
     public Contrat updateContart(@RequestBody Contrat ce) {
-
         return iContratService.updateContrat(ce);
+    }
+    @PutMapping("/{nomE}/{prenomE}")
+    public Contrat affectContratToEtudiant(@RequestBody Contrat ce, @PathVariable("nomE") String nom , @PathVariable("prenom") String prenom) {
+        return iContratService.affectContratToEtudiant(ce ,nom ,prenom);
+    }
+
+    @GetMapping("/{universite-id}/{startDate}/{endDate}")
+    public Map<Specialite, Float> affectContratToEtudiant(@PathVariable("universite-id") Integer universiteId, @PathVariable("startDate") Date startDate , @PathVariable("endDate") Date endDate) {
+        return iContratService.getMontantContratEntreDeuxDate(universiteId,startDate ,endDate);
+    }
+
+    @GetMapping("/{startDate}/{endDate}")
+    public Integer affectContratToEtudiant(@PathVariable("startDate") Date startDate , @PathVariable("endDate") Date endDate) {
+        return iContratService.nbContratsValides(startDate ,endDate);
     }
 }

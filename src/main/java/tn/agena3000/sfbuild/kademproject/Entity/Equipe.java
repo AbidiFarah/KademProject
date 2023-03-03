@@ -1,5 +1,6 @@
 package tn.agena3000.sfbuild.kademproject.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class Equipe {
     private String nomEquipe;
     private Niveau niveau;
     @ManyToMany(mappedBy = "Equipes")
+    @JsonIgnore
     private List<Etudiant> etudiants;
     @OneToOne
     private DetailEquipe detailequipe;

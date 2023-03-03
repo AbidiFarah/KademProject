@@ -3,6 +3,7 @@ package tn.agena3000.sfbuild.kademproject.Services.Departement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import tn.agena3000.sfbuild.kademproject.Entity.Departement;
 import tn.agena3000.sfbuild.kademproject.Entity.Universite;
 import tn.agena3000.sfbuild.kademproject.Repository.DepartementRepository;
@@ -34,14 +35,10 @@ private final UniversiteRepository universiteRepository;
     public Departement retrieveDepartement(Integer idDepart) {
         return departementRepository.findById(idDepart).orElse(null);
     }
-
     @Override
     public List<Departement> retrieveDepartementsByUniversite(Integer idUniversite) {
         Universite universite = universiteRepository.findById(idUniversite).orElse(null);
-        if(universite == null){
-            return null;
-        }
-
+        Assert.isNull(universite , "The universty is null");
         return universite.getDepartements();
     }
 }
