@@ -3,6 +3,7 @@ package tn.agena3000.sfbuild.kademproject.Services.Etudiant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import tn.agena3000.sfbuild.kademproject.Entity.Contrat;
 import tn.agena3000.sfbuild.kademproject.Entity.Departement;
@@ -68,19 +69,20 @@ public class EtudiantService implements IEtudiantService{
     }
 
     @Override
+    @Transactional
     public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe) {
         Contrat contrat = contratRepository.findById(idContrat).orElse(null);
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
         Assert.isNull(contrat,"The contart is null ");
         Assert.isNull(equipe,"The equipe is null ");
         Assert.isNull(e,"The etudiant  is null ");
-        // ki yebda aandek object jdid donc lezem taamlou t'initalisi el equipa
+        // ki yebda aandek object jdid donc lezem taamlou t'initalisi el equipe
+        etudiantRepository.saveAndFlush(e);
         List<Equipe> equipes = new ArrayList<>();
         equipes.add(equipe);
         e.setEquipes(equipes);
-        etudiantRepository.saveAndFlush(e);
         contrat.setEtudiant(e);
-        e.getContrats().add(contrat);
+        //e.getContrats().add(contrat);
         return etudiantRepository.save(e);
     }
 

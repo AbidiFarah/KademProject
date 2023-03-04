@@ -8,9 +8,18 @@ import java.util.List;
 
 
 public interface ContratRepository extends JpaRepository<Contrat, Integer> {
- List<Contrat> findByEtudiantDepartementUniversiteIdAndDateFinAndDateDebut
-         (Long universiteId, Date dateDebut, Date dateFin);
+    Integer countByArchiveIsFalseAndEtudiant_NomEAndEtudiant_PrenomE(String nomE,String prenpmE);
 
- List<Contrat> findByArchiveFalseAndDateBetween(Date startDate, Date endDate);
+
+
+// List<Contrat> findByEtudiantDepartementUniversiteIdAndDateFinAndDateDebut
+//         (Long universiteId, Date dateDebut, Date dateFin);
+//
+// List<Contrat> findByArchiveFalseAndArchiveBetween
+//
+//
+// (Date startDate, Date endDate);
+
+
 
 }
