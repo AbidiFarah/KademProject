@@ -1,7 +1,7 @@
 package tn.agena3000.sfbuild.kademproject.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.List;

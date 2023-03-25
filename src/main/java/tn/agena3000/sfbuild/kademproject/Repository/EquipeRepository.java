@@ -8,7 +8,9 @@ import tn.agena3000.sfbuild.kademproject.Entity.Specialite;
 import java.util.List;
 
 public interface EquipeRepository extends JpaRepository<Equipe,Integer> {
-      List<Equipe> findAllByEtudiantsOptionAndEtudiantsContartsSpecialite(Option option , Specialite specialiteContart);
+      List<Equipe> findAllByEtudiantsOptionAndEtudiantsContratsSpecialite(Option option , Specialite specialiteContart);
+
+     // List<Equipe> findAllByNiveau_JuniorAndNiveau_Senior
 
 
 }

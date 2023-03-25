@@ -29,4 +29,9 @@ public class EquipeService implements IEquipeService {
         return equipeRepository.findById(idEquipe).orElse(null);
     }
 
+    @Override
+    public void faireEvoluerEquipes() {
+
+    }
+
 }

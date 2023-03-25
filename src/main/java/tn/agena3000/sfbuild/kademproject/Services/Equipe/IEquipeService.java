@@ -13,4 +13,7 @@ public interface IEquipeService {
 
     Equipe retrieveEquipe (Integer idEquipe);
 
+    void faireEvoluerEquipes();
+
+
 }

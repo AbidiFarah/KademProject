@@ -1,6 +1,6 @@
 package tn.agena3000.sfbuild.kademproject.Entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.List;

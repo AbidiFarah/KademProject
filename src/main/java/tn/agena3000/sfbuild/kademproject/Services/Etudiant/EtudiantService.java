@@ -51,6 +51,7 @@ public class EtudiantService implements IEtudiantService{
         etudiantRepository.delete(e);
 
     }
+    @Transactional
     @Override
     public void assignEtudiantToDepartement(Integer etudiantId, Integer departementId) {
         //récupération des objets
@@ -83,7 +84,8 @@ public class EtudiantService implements IEtudiantService{
         e.setEquipes(equipes);
         contrat.setEtudiant(e);
         //e.getContrats().add(contrat);
-        return etudiantRepository.save(e);
+        //return etudiantRepository.save(e);
+        return e;
     }
 
     @Override
