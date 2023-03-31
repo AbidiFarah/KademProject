@@ -33,7 +33,7 @@ public interface ContratRepository extends JpaRepository<Contrat, Integer> {
 // (Date startDate, Date endDate);
 
 
-    Integer countByArchiveIsFalseAndDateDebutContratAfterAndDateFinContratbefore(Date startDate, Date endDate);
+    //Integer countByArchiveIsFalseAndDateDebutContratAfterAndDateFinContratbefore(Date startDate, Date endDate);
 
     List<Contrat> findByArchiveIsFalseAndDateFinContrat(LocalDate nowDate);
     @Query("select c from Contrat c where c.archive = false and c.dateFinContrat between ?1 and ?2")

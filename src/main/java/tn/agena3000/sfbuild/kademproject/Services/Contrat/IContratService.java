@@ -20,7 +20,7 @@ public interface IContratService {
     Contrat affectContratToEtudiant (Contrat ce,String nomE,String prenomE);
 
     Map<Specialite, Float> getMontantContratEntreDeuxDate(Integer idUniv, Date startDate, Date endDate);
-//
+
     Integer nbContratsValides(Date startDate, Date endDate);
 
     String retrieveAndUpdateStatusContrat();
