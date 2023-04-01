@@ -130,7 +130,7 @@ public class ContratService implements IContratService {
     }
     @Override
    public Integer nbContratsValides(Date startDate, Date endDate) {
-     Integer nbrContrats = contratRepository.countByArchiveIsFalseAndDateDebutContratAfterAndDateFinContratbefore(startDate,endDate);
+     Integer nbrContrats = contratRepository.findByArchiveIsFalseAndDateDebutContratAfterAndAndDateFinContratBefore(startDate,endDate);
        return nbrContrats;
     }
     @Scheduled(cron = "0 0 13 * * ?") // exécution tous les jours à 13h
