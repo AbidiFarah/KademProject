@@ -55,19 +55,13 @@ public class ContratController {
        return iContratService.nbContratsValides(startDate ,endDate);
     }
 
-    @GetMapping("/GetMontant")
-    public Map<String,Float> getMontantContartEntreDeuxDate(int idUniv, LocalDate startDate, LocalDate endDate){
+    @GetMapping("/GetMontant/{universite-id}/{startDate}/{endDate}")
+    public Map<Specialite,Float> getMontantContartEntreDeuxDate(@PathVariable("universite-id") Integer idUniv ,@PathVariable("startDate") Date startDate , @PathVariable("endDate") Date endDate){
         return iContratService.getMontantContratEntreDeuxDate(idUniv,startDate,endDate);
     };
     @GetMapping("/GetnbrContrats")
     Integer nbContratsValides(Date startDate, Date endDate){
         return iContratService.nbContratsValides(startDate,endDate);
     };
-    @PostMapping("/scheduler")
-
-    String retrieveAndUpdateStatusContrat(){
-        return iContratService.retrieveAndUpdateStatusContrat();
-    };
-
 
 }
